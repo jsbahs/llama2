@@ -2,13 +2,40 @@ import streamlit as st
 import replicate
 import os
 
+# lmm models
+OPENAI_MODELS = ['gpt-3.5-turbo',
+                 "gpt-4",
+                 "gpt-4-1106-preview"]
+
+OPEN_MODELS = {
+    'mistral-7b-instruct-v0.1': 'mistralai/Mistral-7B-Instruct-v0.1',
+    "zephyr-7b-beta": 'HuggingFaceH4/zephyr-7b-beta'
+}
+
 # App title
-st.set_page_config(page_title="🦙💬 Llama 2 Chatbot")
+#st.set_page_config(page_title="🦙💬 Llama 2 Chatbot")
+#st.set_page_config(page_title="💬 InnoLLM Chatbot")
+
+st.set_page_config(
+    page_title="InnoLLM Chatbot",
+    page_icon="💬",
+    initial_sidebar_state="expanded",
+    layout="wide",
+    menu_items={
+        'Get Help': 'https://github.com/lfoppiano/document-qa',
+        'Report a bug': "https://github.com/lfoppiano/document-qa/issues",
+        'About': "Upload a scientific article in PDF, ask questions, get insights. GenAI Task"
+    }
+)
+
+     
 
 # Replicate Credentials
 with st.sidebar:
-    st.title('🦙💬 Llama 2 Chatbot')
-    st.write('This chatbot is created using the open-source Llama 2 LLM model from Meta.')
+    ##st.title('🦙💬 Llama 2 Chatbot')
+    st.title('💬 InnoLLM Chatbot Dev')
+    ##st.write('This chatbot is created using the open-source Llama 2 LLM model from Meta.')
+    st.write('This chatbot is created by GenAI Task from LG Innotek ')
     if 'REPLICATE_API_TOKEN' in st.secrets:
         st.success('API key already provided!', icon='✅')
         replicate_api = st.secrets['REPLICATE_API_TOKEN']
